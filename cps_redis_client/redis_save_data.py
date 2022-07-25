@@ -24,8 +24,8 @@ ping_dat = ['seq','sec','ns','dely','loss','val']   # 延时、丢包、分数�
 # 
 
 class RedisClient():
-    def __init__(self, server_addr=('192.168.1.104', 6379), local_redis=('127.0.0.1', 6379), uav_id=0):
-        self.redis_expire = 0        # redis数据的保存时间，单位s，为0表示不删除
+    def __init__(self, server_addr=('192.168.1.123', 6379), local_redis=('127.0.0.1', 6379), uav_id=0):
+        self.redis_expire = 600        # redis数据的保存时间，单位s，为0表示不删除
         self.server_addr = server_addr
         self.local_redis = local_redis
         self.uav_id = uav_id
@@ -37,7 +37,8 @@ class RedisClient():
             self.red_s = redis.Redis(host=server_addr[0], port=server_addr[1], db=0)
             self.red_s.get('tst')
             print('Redis OK!')
-        except:
+        except Exception as e:
+            print(e)
             print("Redis connect error!")
             exit()
 
@@ -203,8 +204,8 @@ class RedisClient():
  
 if __name__ == '__main__':
     for i in range(6):
-        RedisClient(server_addr=('192.168.1.104', 6379), uav_id=i)
-    # RedisClient(server_addr=('192.168.1.104', 6379), uav_id=1)
+        RedisClient(server_addr=('192.168.1.123', 6379), uav_id=i)
+    # RedisClient(server_addr=('192.168.1.123', 6379), uav_id=5)
 
 
     while True:

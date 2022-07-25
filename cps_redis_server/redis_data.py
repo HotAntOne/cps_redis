@@ -286,7 +286,7 @@ class redis_data_save():
 
 if __name__ == "__main__":
     uav_name = sys.argv[1]
-    t = redis_data_save('localhost', uav_name=uav_name, ttl_time=600)
+    t = redis_data_save('0.0.0.0', uav_name=uav_name, ttl_time=600)
     r = rospy.Rate(10) # 10hz
     while not rospy.is_shutdown():
         r.sleep()
